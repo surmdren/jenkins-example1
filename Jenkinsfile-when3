@@ -7,6 +7,9 @@ pipeline {
             }
         }
         stage('Example Deploy') {
+            environment {
+                DEPLOY_TO = 'production'
+            }
             when {
                 branch 'production'
                 anyOf {
