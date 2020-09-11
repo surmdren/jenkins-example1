@@ -10,7 +10,7 @@ pipeline {
             environment {
                 DEPLOY_TO = 'production'
             }
-            when {  
+            anyof {  
                 branch 'production'
                 environment name: 'DEPLOY_TO', value: 'production'
             }
