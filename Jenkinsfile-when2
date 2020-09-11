@@ -7,11 +7,15 @@ pipeline {
             }
         }
         stage('Example Deploy') {
-            when {
+            environment {
+                DEPLOY_TO = 'production'
+            }
+            when {  
                 branch 'production'
                 environment name: 'DEPLOY_TO', value: 'production'
             }
             steps {
+                sh 'printenv'
                 echo 'Deploying'
             }
         }
