@@ -4,6 +4,7 @@ def call(body) {
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = pipelineParams
     body()
+    echo "Hello Jenkins."
     println pipelineParams.build_image
     pipeline{
         agent {
