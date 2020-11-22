@@ -1,5 +1,5 @@
 @Library('mylibrary') _
 
-libraryDemo{
+pipelinek8s{
     packagename = 'test'
     }
