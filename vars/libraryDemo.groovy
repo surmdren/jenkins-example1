@@ -1,7 +1,7 @@
 #!groovy
-def call(Map config) {
+def call(Map pipelineParams) {
     echo "Hello"
-    println config
+    println pipelineParams.build_image
     pipeline{
         agent {
             kubernetes {
