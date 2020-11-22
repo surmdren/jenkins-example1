@@ -8,7 +8,7 @@ def call(body) {
     pipeline{
         agent {
             kubernetes {
-            defaultContainer 'kube'
+            defaultContainer 'jnlp'
             }
         }
         stages {
@@ -20,7 +20,7 @@ def call(body) {
                     timeout(time: 1, unit: 'HOURS')
                 }
                 steps {
-                    echo 'Hello World ! I am in develop branch, container kube'
+                    echo 'Hello World ! I am in develop branch.'
                     echo env.BRANCH_NAME
                     sh 'printenv'
                 }
