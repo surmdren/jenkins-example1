@@ -1,0 +1,17 @@
+@Library('Utilities') _
+
+def object1 = new jenkinsObject()
+node {
+    stage ('Test') {
+        object1.func1()
+    }
+}
+
+@Library('Utilities') _
+
+//def object1 = new jenkinsObject(steps)
+node {
+    stage ('Test') {
+        jenkinsObject 'ls -la'
+    }
+}

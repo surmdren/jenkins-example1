@@ -1,0 +1,37 @@
+@Library('Utilities') import static org.foo.GetEnv.*
+def myEnv = new org.foo.GetEnv(steps)
+node (){
+    stage ('Test') {
+        myEnv.getEnvValue 'test1'
+    }
+}
+
+@Library('Utilities') import static org.foo.GetEnv.*
+def myEnv = new org.foo.GetEnv(steps)
+node (){
+    stage ('Test') {
+        echo myEnv.isEnabled(this).toString()
+    }
+}
+
+@Library('Utilities') import static org.foo.GetEnv.*
+def myEnv = new org.foo.GetEnv(steps)
+node (){
+    stage ('Test') {
+        echo myEnv.networkName()
+    }
+}
+
+
+@Library('Utilities') import static org.foo.GetEnv.*
+import groovy.json.JsonSlurperClassic
+cancelPreviousBuilds(env.JOB_NAME, env.BUILD_NUMBER)
+
+def myEnv = new org.foo.GetEnv(steps)
+node (){
+    stage ('Test') {
+        echo myEnv.networkName()
+        echo env.JOB_NAME 
+        echo env.BUILD_NUMBER
+    }
+}

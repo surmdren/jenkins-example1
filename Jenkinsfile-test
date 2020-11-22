@@ -1,0 +1,4 @@
+@Library('Utilities') import static org.foo.JenkinsTest.*
+@Library('Utilities') _
+
+def jenkinsUtils = new JenkinsTest()

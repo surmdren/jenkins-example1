@@ -1,0 +1,51 @@
+// Declarative Pipeline
+// pipeline {
+//     agent any
+//     stages {
+//         stage('Example') {
+//             input {
+//                 message "Should we continue?"
+//                 ok "Yes, we should."
+//                 submitter "alice,bob"
+//                 parameters {
+//                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+//                 }
+//             }
+//             steps {
+//                 echo "Hello, ${PERSON}, nice to meet you."
+//             }
+//         }
+//     }
+// }
+
+// Scripted Pipeline
+node() {
+    def answer = input message: '<message>',
+    parameters: [string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')],
+    //parameters: [choice(choices: "choice1\nchoice2\nchoice3\nchoice4\n",description: 'Choose an option', name: 'Options')],
+    //parameters: [booleanParam(defaultValue: true,description: 'Prerelease setting', name: 'prerelease')],
+    ok: 'Yes, we should.'
+
+    echo "Hello, ${answer}, nice to meet you."
+
+    // Credentials
+    // def creds = input message: '<message>',
+    // parameters: [[$class: 'CredentialsParameterDefinition', credentialType:'com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey',
+    // defaultValue: 'jenkins2-ssh', description: 'SSH key for access',
+    // name: 'SSH', required: true]]
+    // echo creds
+
+    def creds = input message: '', parameters: [[$class:
+    'CredentialsParameterDefinition', credentialType:
+    'com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl',
+    defaultValue: '', description: 'Enter username and password',
+    name: 'User And Pass', required: true]]
+    echo creds
+
+    // File
+    def selectedFile = input message: '<message>',
+    parameters: [file(description: 'Choose file to upload', name: 'local')]
+    echo selectedFile
+
+
+}

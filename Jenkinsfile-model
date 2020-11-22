@@ -1,0 +1,9 @@
+@Library('Utilities') import static org.foo.JenkinsModel.*
+
+def jenkinsmodel = new org.foo.JenkinsModel(steps)
+
+node {
+    stage ('Test') {
+        echo jenkinsmodel.getActiveJenkinsInstance()
+    }
+}

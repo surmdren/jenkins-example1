@@ -1,0 +1,52 @@
+@Library('Utilities') import static org.foo.buildUtils.*
+@Library('Utilities') import static org.foo.GetEnv.*
+@Library('Utilities') _
+
+//node () {
+//    def myUtils = new org.foo.buildUtils()
+//    myUtils.timedGradleBuild("--version")
+//}
+
+//def bldtools = new org.foo.buildUtils(steps)
+//node () {
+//    bldtools.timedGradleBuild '--version'
+//}
+//
+//node {
+//    stage ('Test') {
+//        timedCommand.cmd = 'ls -la'
+//        echo timedCommand.cmd
+//        timedCommand.runCommand()
+//        echo timedCommand.getOutput()
+//    }
+//}
+//
+//node {
+//    stage ('Test') {
+//        timedCommand2 'ls -la', 'listing.log'
+//    }
+//}
+//
+//node {
+//    stage ('Test') {
+//        timedCommand3 {
+//            def content = readFile file: 'a.txt'
+//            //sh "<some processing on content>"
+//            writeFile file: 'b.txt', text: content
+//            echo "Done"
+//        }
+//    }
+//}
+
+@Library('Utilities') _
+
+timedCommand4 packagename: 'ds-pfic-engine-1.0-SNAPSHOT.zip',build_image: 'hkappdlv006.asia.pwcinternal.com:443/pfic/pfic-build:v3.0'
+              ,recipistors: 'admin'
+
+node {
+    stage ('Test') {
+        GetEnvValue {
+            
+        }
+    }
+}
