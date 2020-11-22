@@ -1,13 +1,7 @@
 #!groovy
-def call(body) {
+def call(Map config) {
     echo "Hello"
-    println body
-    // evaluate the body block, and collect configuration into the object
-    def pipelineParams= [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = pipelineParams
-    body()
-    println body
+    println config
     pipeline{
         agent {
             kubernetes {
