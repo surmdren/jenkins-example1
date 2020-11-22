@@ -1,4 +1,4 @@
-@Library('mylibs') _
+@Library('mylibrary') _
 
 libraryDemo{
     packagename = 'test'
