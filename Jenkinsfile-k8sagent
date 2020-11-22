@@ -1,3 +1,5 @@
 @Library('mylibrary') _
 
-libraryDemo(packagename: 'test')
+libraryDemo{
+    packagename = 'test'
+    }
