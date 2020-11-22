@@ -1,6 +1,6 @@
 #!groovy
 def call(body) {
-    println config
+    println body
     evaluate the body block, and collect configuration into the object
     def pipelineParams= [:]
     body.resolveStrategy = Closure.DELEGATE_FIRST
