@@ -8,7 +8,7 @@ def call(body) {
     pipeline{
         agent {
             kubernetes {
-            defaultContainer 'jnlp'
+            defaultContainer 'kube'
             }
         }
         stages {
