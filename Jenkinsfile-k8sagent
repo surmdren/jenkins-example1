@@ -1,4 +1,4 @@
-@Library('mylibrary') _
+@Library('mylibs') _
 
 pipelineK8s(packagename : 'ds-awm-1.0-SNAPSHOT.zip',
             build_image : 'sbt',
