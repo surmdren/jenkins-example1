@@ -2,7 +2,6 @@
 
 // libraryDemo{packagename: 'test'}
 
-
 libraryDemo(packagename : 'ds-awm-1.0-SNAPSHOT.zip',
             build_image : 'sbt',
             deploy_image : 'deploy',
