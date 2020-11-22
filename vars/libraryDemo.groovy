@@ -1,6 +1,6 @@
 #!groovy
 def call(Map config) {
-    echo println(config)
+    echo "Hello"
     pipeline {
       agent any
       stages {
