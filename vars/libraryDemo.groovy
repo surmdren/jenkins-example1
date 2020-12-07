@@ -21,7 +21,7 @@ def call(body) {
                     timeout(time: 1, unit: 'HOURS')
                 }
                 steps {
-                    sleep(10)
+                    sh 'sleep 10'
                     echo 'Hello World ! I am in develop branch.'
                     echo env.BRANCH_NAME
                     sh 'printenv'
