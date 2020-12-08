@@ -1,4 +1,4 @@
-@Library(myUtilities) _
+@Library('myUtilities') _
 
 buildImage (packagename : 'test.zip',
        build_image : 'sbt',
