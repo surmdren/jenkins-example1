@@ -1,0 +1,6 @@
+@Library(myUtilities) _
+
+buildImage (packagename : 'test.zip',
+       build_image : 'sbt',
+       deploy_image : 'deploy',
+       recipistors : 'madongchn@163.com')
