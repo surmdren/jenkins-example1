@@ -1,6 +1,6 @@
 @Library('mylibs') _
 
-pipelineK8s(packagename : 'ds-awm-1.0-SNAPSHOT.zip',
+pipelineK8s(packagename : 'test.zip',
             build_image : 'sbt',
             deploy_image : 'deploy',
             recipistors : 'madongchn@163.com')
