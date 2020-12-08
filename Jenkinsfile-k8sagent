@@ -1,7 +1,6 @@
 @Library('mylibs') _
 
-pipelineK8s(packagename : 'ds-awm-1.0-SNAPSHOT.zip',
+pipelineK8s(packagename : 'test.zip',
             build_image : 'sbt',
             deploy_image : 'deploy',
-            e2e_image : 'e2e',
-            recipistors : 'maggie.m.zhu@cn.pwc.com,yao.yc.sun@cn.pwc.com,steven.t.zhou@cn.pwc.com')
+            recipistors : 'madongchn@163.com')
