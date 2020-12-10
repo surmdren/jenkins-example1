@@ -17,7 +17,7 @@ def call(Map pipelineParams) {
         parameters {
           string(name: 'Jenkins_CI_Node', defaultValue: 'agent010', description: 'Jenkins Continues Integration Node')
           string(name: 'Jenkins_CD_Node', defaultValue: 'agent010', description: 'Jenkins Continues Deployment Node')
-          string(name: 'Build_Image', defaultValue: 'hkappdlv006.asia.pwcinternal.com:443/novus/novus-sbt:v2.2', description: 'Jenkins Build Image')
+          string(name: 'Build_Image', defaultValue: 'hkappdlv006.asia.pwcinternal.com:443/novus/novus-sbt:v2.3', description: 'Jenkins Build Image')
         }
 
         stages {
@@ -38,6 +38,9 @@ def call(Map pipelineParams) {
                     echo env.GIT_BRANCH
                     sh 'printenv'
                     sh 'sbt sbtVersion'
+                    git clone env.GIT_URL
+                    cd web
+                    docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:env.BUILD_NUMBER
                 }
             }
         }
