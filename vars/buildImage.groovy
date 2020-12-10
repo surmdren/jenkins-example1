@@ -37,7 +37,7 @@ def call(Map pipelineParams) {
                     echo 'Hello World ! I am in develop branch.'
                     echo env.GIT_BRANCH
                     sh 'printenv'
-                    sh 'docker images'
+                    sh 'sbt sbtVersion'
                 }
             }
         }
