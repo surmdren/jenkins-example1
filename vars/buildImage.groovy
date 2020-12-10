@@ -27,7 +27,7 @@ def call(Map pipelineParams) {
                         image "${params.Build_Image}"
                         label "${params.Jenkins_CI_Node}"
                         //label 'agent007'
-                        args '-v /var/run/docker.sock:/var/run/docker.sock -e harboraccount='+"${harboraccount}"+' -e harborpasswd='+"${harborpasswd}"+' -e AES_PASSWORD='+"${AES_PASSWORD}"+' -e AES_SALT='+"${AES_SALT}"
+                        args '-u 0:0 -v /var/run/docker.sock:/var/run/docker.sock -e harboraccount='+"${harboraccount}"+' -e harborpasswd='+"${harborpasswd}"+' -e AES_PASSWORD='+"${AES_PASSWORD}"+' -e AES_SALT='+"${AES_SALT}"
                     }
                 }
                 options {
