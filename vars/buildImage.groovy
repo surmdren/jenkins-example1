@@ -40,7 +40,7 @@ def call(Map pipelineParams) {
                     sh 'sbt sbtVersion'
                     sh "git clone http://$gitlabaccount:$gitlabtoken@172.17.0.3/surmdren/web.git"
                     sh 'cd web'
-                    sh 'ls'
+                    sh 'pwd'
                     sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:env.BUILD_NUMBER .'
                 }
             }
