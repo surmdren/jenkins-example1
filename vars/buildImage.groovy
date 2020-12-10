@@ -38,7 +38,7 @@ def call(Map pipelineParams) {
                     echo env.GIT_BRANCH
                     sh 'printenv'
                     sh 'sbt sbtVersion'
-                    sh "git clone $GIT_URL"
+                    sh "git clone http://gitlabaccount:gitlabtoken@172.17.0.3/surmdren/web.git"
                     sh 'cd web'
                     sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:env.BUILD_NUMBER .'
                 }
