@@ -39,8 +39,8 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                     sh 'sbt sbtVersion'
                     git clone env.GIT_URL
-                    cd web
-                    docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:env.BUILD_NUMBER .
+                    sh 'cd web'
+                    sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:env.BUILD_NUMBER .'
                 }
             }
         }
