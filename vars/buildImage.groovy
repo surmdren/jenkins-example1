@@ -39,6 +39,7 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                     sh 'sbt sbtVersion'
                     sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
+                    sh 'docker login -u $harboraccount -p $harborpasswd'
                 }
             }
         }
