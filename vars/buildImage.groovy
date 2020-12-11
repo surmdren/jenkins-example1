@@ -40,7 +40,7 @@ def call(Map pipelineParams) {
                     sh 'sbt sbtVersion'
                     //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
                     sh 'docker build -t pwcdsdevops/novus-prod:$BUILD_NUMBER .'
-                    sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER .'
+                    sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER'
                 }
             }
         }
