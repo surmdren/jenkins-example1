@@ -23,11 +23,10 @@ def call(Map pipelineParams) {
         stages {
             stage("sbt dist") {
                 agent {
-                    docker {
-                        image "${params.Build_Image}"
-                        label "${params.Jenkins_CI_Node}"
-                        //label 'agent007'
-                        args '-u 0:0 -v /var/run/docker.sock:/var/run/docker.sock -e harboraccount='+"${harboraccount}"+' -e harborpasswd='+"${harborpasswd}"+' -e AES_PASSWORD='+"${AES_PASSWORD}"+' -e AES_SALT='+"${AES_SALT}"
+                    kubernetes {
+                        //customWorkspace 'some/other/path'
+                        defaultContainer 'build'
+                        yamlFile 'KubernetesPod.yaml'
                     }
                 }
                 options {
@@ -39,9 +38,9 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                     sh 'sbt sbtVersion'
                     //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
-                    sh 'docker build -t pwcdsdevops/novus-prod:$BUILD_NUMBER .'
-                    sh 'docker login -u $harboraccount -p $harborpasswd'
-                    sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER'
+                    // sh 'docker build -t pwcdsdevops/novus-prod:$BUILD_NUMBER .'
+                    // sh 'docker login -u $harboraccount -p $harborpasswd'
+                    // sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER'
                 }
             }
         }
