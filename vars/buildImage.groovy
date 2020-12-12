@@ -2,7 +2,16 @@
 def call(Map pipelineParams) {
     println pipelineParams
     pipeline{
-        agent none
+        agent {
+            kubernetes {
+                //customWorkspace 'some/other/path'
+                defaultContainer 'build'
+                yamlFile 'KubernetesPod.yaml'
+            }
+        }
+        options {
+            timeout(time: 1, unit: 'HOURS')
+        }
         environment {
             AES_PASSWORD = credentials('AES_PASSWORD')
             AES_SALT = credentials('AES_SALT')
@@ -22,16 +31,6 @@ def call(Map pipelineParams) {
 
         stages {
             stage("sbt dist") {
-                agent {
-                    kubernetes {
-                        //customWorkspace 'some/other/path'
-                        defaultContainer 'build'
-                        yamlFile 'KubernetesPod.yaml'
-                    }
-                }
-                options {
-                    timeout(time: 1, unit: 'HOURS')
-                }
                 steps {
                     echo 'Hello World ! I am in develop branch.'
                     echo env.GIT_BRANCH
