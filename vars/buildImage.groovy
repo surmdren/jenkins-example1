@@ -36,13 +36,10 @@ def call(Map pipelineParams) {
                     echo env.GIT_BRANCH
                     sh 'printenv'
                     sh 'sbt sbtVersion'
-                    sh """
-                    pwd;ls
-                    """
                     //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
-                    // sh 'docker build -t pwcdsdevops/novus-prod:$BUILD_NUMBER .'
-                    // sh 'docker login -u $harboraccount -p $harborpasswd'
-                    // sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER'
+                    sh 'docker build -t pwcdsdevops/novus-prod:$BUILD_NUMBER .'
+                    sh 'docker login -u $harboraccount -p $harborpasswd'
+                    sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER'
                 }
             }
         }
