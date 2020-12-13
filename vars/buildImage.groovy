@@ -51,10 +51,8 @@ def call(Map pipelineParams) {
                     container('deploy') {
                         echo 'Hello World ! I am in develop branch.'
                         echo env.GIT_BRANCH
-                        sh '''
+                        kubectl get pods
                         pwd
-                        ls /app
-                        '''
                     }
                 }
             }
