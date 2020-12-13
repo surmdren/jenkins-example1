@@ -28,8 +28,9 @@ def call(Map pipelineParams) {
         }
 
         stages {
-            stage("sbt dist") {
+            stage("build image") {
                 steps {
+                  container('build') {
                     echo 'Hello World ! I am in develop branch.'
                     echo env.GIT_BRANCH
                     sh 'printenv'
@@ -41,7 +42,20 @@ def call(Map pipelineParams) {
                     //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
                      sh 'docker build -t pwcdsdevops/$imageName:$BUILD_NUMBER .'
                     // sh 'docker login -u $harboraccount -p $harborpasswd'
-                    // sh 'docker push pwcdsdevops/$imageName:$BUILD_NUMBER'
+                    // sh 'docker push pwcdsdevops/$imageName:$BUILD_NUMBER'      
+                  }
+                }
+            }
+            stage("deploy") {
+                steps {
+                  container('deploy') {
+                    echo 'Hello World ! I am in develop branch.'
+                    echo env.GIT_BRANCH
+                    sh 'kubectl get pods'
+                    sh """
+                    pwd
+                    ls /app
+                    """
                 }
             }
         }
