@@ -1,7 +1,7 @@
 #!groovy
 def call(Map pipelineParams) {
     println pipelineParams
-    pipeline{
+    pipeline {
         agent {
             kubernetes {
                 //customWorkspace 'some/other/path'
@@ -20,42 +20,43 @@ def call(Map pipelineParams) {
             gitlabaccount = credentials('gitlabaccount')
             gitlabtoken = credentials('gitlabtoken')
         }
-        triggers {       
-         pollSCM(env.BRANCH_NAME == 'master' ? '30 19 * * *' : '') // daily at 19:30 pm  --- QA  
+        triggers {
+            pollSCM(env.BRANCH_NAME == 'master' ? '30 19 * * *' : '') // daily at 19:30 pm  --- QA
         }
         parameters {
-          string(name: 'imageName', defaultValue: 'web', description: 'Jenkins Build Image Name')
+            string(name: 'imageName', defaultValue: 'web', description: 'Jenkins Build Image Name')
         }
 
         stages {
-            stage("build image") {
+            stage('build image') {
                 steps {
-                  container('build') {
-                    echo 'Hello World ! I am in develop branch.'
-                    echo env.GIT_BRANCH
-                    sh 'printenv'
-                    sh 'sbt sbtVersion'
-                    sh """
+                    container('build') {
+                        echo 'Hello World ! I am in develop branch.'
+                        echo env.GIT_BRANCH
+                        sh 'printenv'
+                        sh 'sbt sbtVersion'
+                        sh '''
                     pwd
                     ls /app
-                    """
-                    //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
-                     sh 'docker build -t pwcdsdevops/$imageName:$BUILD_NUMBER .'
+                    '''
+                        //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
+                        sh 'docker build -t pwcdsdevops/$imageName:$BUILD_NUMBER .'
                     // sh 'docker login -u $harboraccount -p $harborpasswd'
-                    // sh 'docker push pwcdsdevops/$imageName:$BUILD_NUMBER'      
-                  }
+                    // sh 'docker push pwcdsdevops/$imageName:$BUILD_NUMBER'
+                    }
                 }
             }
-            stage("deploy") {
+            stage('deploy') {
                 steps {
-                  container('deploy') {
-                    echo 'Hello World ! I am in develop branch.'
-                    echo env.GIT_BRANCH
-                    sh 'kubectl get pods'
-                    sh """
-                    pwd
-                    ls /app
-                    """
+                    container('deploy') {
+                        echo 'Hello World ! I am in develop branch.'
+                        echo env.GIT_BRANCH
+                        sh 'kubectl get pods'
+                        sh '''
+                        pwd
+                        ls /app
+                        '''
+                    }
                 }
             }
         }
