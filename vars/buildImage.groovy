@@ -36,9 +36,9 @@ def call(Map pipelineParams) {
                         sh 'printenv'
                         sh 'sbt sbtVersion'
                         sh '''
-                    pwd
-                    ls /app
-                    '''
+                        pwd
+                        ls /app
+                        '''
                         //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
                         sh 'docker build -t pwcdsdevops/$imageName:$BUILD_NUMBER .'
                     // sh 'docker login -u $harboraccount -p $harborpasswd'
@@ -51,8 +51,8 @@ def call(Map pipelineParams) {
                     container('deploy') {
                         echo 'Hello World ! I am in develop branch.'
                         echo env.GIT_BRANCH
-                        kubectl get pods
-                        pwd
+                        sh 'kubectl get pods'
+                        sh 'pwd'
                     }
                 }
             }
