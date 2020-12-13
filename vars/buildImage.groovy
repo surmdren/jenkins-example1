@@ -24,8 +24,6 @@ def call(Map pipelineParams) {
          pollSCM(env.BRANCH_NAME == 'master' ? '30 19 * * *' : '') // daily at 19:30 pm  --- QA  
         }
         parameters {
-          string(name: 'Jenkins_CI_Node', defaultValue: 'agent010', description: 'Jenkins Continues Integration Node')
-          string(name: 'Jenkins_CD_Node', defaultValue: 'agent010', description: 'Jenkins Continues Deployment Node')
           string(name: 'imageName', defaultValue: 'web', description: 'Jenkins Build Image Name')
         }
 
