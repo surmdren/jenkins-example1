@@ -26,7 +26,7 @@ def call(Map pipelineParams) {
         parameters {
           string(name: 'Jenkins_CI_Node', defaultValue: 'agent010', description: 'Jenkins Continues Integration Node')
           string(name: 'Jenkins_CD_Node', defaultValue: 'agent010', description: 'Jenkins Continues Deployment Node')
-          string(name: 'Build_Image', defaultValue: 'hkappdlv006.asia.pwcinternal.com:443/novus/novus-sbt:v1.0.0', description: 'Jenkins Build Image')
+          string(name: 'imageName', defaultValue: 'hkappdlv006.asia.pwcinternal.com:443/novus/novus-sbt:v1.0.0', description: 'Jenkins Build Image')
         }
 
         stages {
@@ -43,7 +43,7 @@ def call(Map pipelineParams) {
                     //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
                     sh 'docker build -t pwcdsdevops/novus-prod:$BUILD_NUMBER .'
                     sh 'docker login -u $harboraccount -p $harborpasswd'
-                    sh 'docker push pwcdsdevops/novus-prod:$BUILD_NUMBER'
+                    sh 'docker push pwcdsdevops/$imageName:$BUILD_NUMBER'
                 }
             }
         }
