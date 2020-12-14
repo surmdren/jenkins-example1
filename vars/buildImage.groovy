@@ -46,16 +46,16 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('deploy') {
-                steps {
-                    container('deploy') {
-                        echo 'Hello World ! I am in develop branch.'
-                        echo env.GIT_BRANCH
-                        sh 'kubectl get pods'
-                        sh 'pwd'
-                    }
-                }
-            }
+            // stage('deploy') {
+            //     steps {
+            //         container('deploy') {
+            //             echo 'Hello World ! I am in develop branch.'
+            //             echo env.GIT_BRANCH
+            //             sh 'kubectl get pods'
+            //             sh 'pwd'
+            //         }
+            //     }
+            // }
         }
     }
 }
