@@ -38,9 +38,8 @@ def call(Map pipelineParams) {
                         sh '''
                             docker build -t pwcdsdevops/$imageName:$GIT_BRANCH .
                             docker login -u $harboraccount -p $harborpasswd
-                            //docker push pwcdsdevops/$imageName:$GIT_BRANCH
+                            docker push pwcdsdevops/$imageName:$GIT_BRANCH
                         '''
-                        
                         
                     }
                 }
