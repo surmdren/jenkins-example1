@@ -33,7 +33,7 @@ def call(Map pipelineParams) {
                     container('build') {
                         echo 'Hello World ! I am in develop branch.'
                         echo env.GIT_BRANCH
-                        env.REPO=pipelineParams.repo
+                        REPO=pipelineParams.repo
                         echo env.REPO
                         sh 'printenv'
                         sh 'sbt sbtVersion'
