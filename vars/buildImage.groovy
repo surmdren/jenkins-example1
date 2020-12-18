@@ -1,6 +1,7 @@
 #!groovy
 def call(Map pipelineParams) {
     println pipelineParams.repo
+    def repo=pipelineParams.repo
     pipeline {
         agent {
             kubernetes {
@@ -33,8 +34,7 @@ def call(Map pipelineParams) {
                     container('build') {
                         echo 'Hello World ! I am in develop branch.'
                         echo env.GIT_BRANCH
-                        REPO=pipelineParams.repo
-                        echo env.REPO
+                        echo env.repo
                         sh 'printenv'
                         sh 'sbt sbtVersion'
                         sh '''
