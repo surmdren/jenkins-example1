@@ -37,7 +37,7 @@ def call(Map pipelineParams) {
                         sh 'printenv'
                         sh 'sbt sbtVersion'
                         sh '''
-                            docker build -t pwcdsdevops/$repo/$imageName:$GIT_BRANCH .
+                            docker build -t pwcdsdevops/pipelineParams.repo/$imageName:$GIT_BRANCH .
                             docker login -u $harboraccount -p $harborpasswd
                         '''
                         
