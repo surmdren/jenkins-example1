@@ -2,6 +2,7 @@
 def call(Map pipelineParams) {
     println pipelineParams.repo
     def repo=pipelineParams.repo.toString()
+    println repo
     pipeline {
         agent {
             kubernetes {
