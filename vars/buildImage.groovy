@@ -1,6 +1,6 @@
 #!groovy
 def call(Map pipelineParams) {
-    println pipelineParams
+    println pipelineParams.repo
     pipeline {
         agent {
             kubernetes {
@@ -36,9 +36,8 @@ def call(Map pipelineParams) {
                         sh 'printenv'
                         sh 'sbt sbtVersion'
                         sh '''
-                            docker build -t pwcdsdevops/$imageName:$GIT_BRANCH .
+                            docker build -t pwcdsdevops/$repo/$imageName:$GIT_BRANCH .
                             docker login -u $harboraccount -p $harborpasswd
-                            docker push pwcdsdevops/$imageName:$GIT_BRANCH
                         '''
                         
                     }
