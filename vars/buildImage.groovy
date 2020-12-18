@@ -1,7 +1,6 @@
 #!groovy
 def call(Map pipelineParams) {
     println pipelineParams.repo
-    def repo=pipelineParams.repo
     pipeline {
         agent {
             kubernetes {
@@ -20,6 +19,7 @@ def call(Map pipelineParams) {
             harborpasswd = credentials('harborpasswd')
             gitlabaccount = credentials('gitlabaccount')
             gitlabtoken = credentials('gitlabtoken')
+            repo = pipelineParams.repo
         }
         triggers {
             pollSCM(env.BRANCH_NAME == 'master' ? '30 19 * * *' : '') // daily at 19:30 pm  --- QA
