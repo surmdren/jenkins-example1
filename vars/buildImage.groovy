@@ -1,6 +1,8 @@
 #!groovy
 def call(Map pipelineParams) {
-    println pipelineParams
+    println pipelineParams.repo
+    def repo=pipelineParams.repo.toString()
+    println repo
     pipeline {
         agent {
             kubernetes {
@@ -25,6 +27,7 @@ def call(Map pipelineParams) {
         }
         parameters {
             string(name: 'imageName', defaultValue: 'web', description: 'Jenkins Build Image Name')
+            string(name: 'repo', defaultValue: 'novus-prod', description: 'Repo Name')
         }
 
         stages {
@@ -33,12 +36,14 @@ def call(Map pipelineParams) {
                     container('build') {
                         echo 'Hello World ! I am in develop branch.'
                         echo env.GIT_BRANCH
+                        echo env.repo
                         sh 'printenv'
                         sh 'sbt sbtVersion'
                         sh '''
-                        pwd
-                        ls /app
+                            docker build -t pwcdsdevops/$repo/$imageName:$GIT_BRANCH .
+                            docker login -u $harboraccount -p $harborpasswd
                         '''
+<<<<<<< HEAD
                         //sh 'docker build -t hkappdlv006.asia.pwcinternal.com:443/novus/novus-prod:$BUILD_NUMBER .'
                         sh 'docker build -t pwcdsdevops/$imageName:$BUILD_NUMBER .'
                     // sh 'docker login -u $harboraccount -p $harborpasswd'
@@ -53,9 +58,22 @@ def call(Map pipelineParams) {
                         echo env.GIT_BRANCH
                         sh 'kubectl get pods'
                         sh 'pwd'
+=======
+                        
+>>>>>>> a1aefe7e8c352e125911bb94ae5340483700a549
                     }
                 }
             }
+            // stage('deploy') {
+            //     steps {
+            //         container('deploy') {
+            //             echo 'Hello World ! I am in develop branch.'
+            //             echo env.GIT_BRANCH
+            //             sh 'kubectl get pods'
+            //             sh 'pwd'
+            //         }
+            //     }
+            // }
         }
     }
 }
