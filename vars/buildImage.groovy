@@ -46,7 +46,7 @@ def call(Map pipelineParams) {
                     }
                 }
             }
-            stage('deploy') {
+            stage('deploy image') {
                 steps {
                     container('deploy') {
                         echo 'Hello World ! I am in develop branch.'
