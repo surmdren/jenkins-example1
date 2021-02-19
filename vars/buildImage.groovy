@@ -1,7 +1,6 @@
 #!groovy
 def call(Map pipelineParams) {
     println pipelineParams.repo
-    def repo=pipelineParams.repo.toString()
     println repo
     pipeline {
         agent {
@@ -36,7 +35,6 @@ def call(Map pipelineParams) {
                     container('build') {
                         echo 'Hello World ! I am in develop branch.'
                         echo env.GIT_BRANCH
-                        echo env.repo
                         sh 'printenv'
                         sh 'sbt sbtVersion'
                         sh '''
