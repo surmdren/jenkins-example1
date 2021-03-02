@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+    parameters {
+        string(name: 'tag_name', defaultValue: 'nationalday-rc1', description: 'tag_name')
+    }
+
+    stages {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'hkappdlv006.asia.pwcinternal.com:443/digital-store/ds-build:v1.0'
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
+            stages {
+                stage('Branch Build') {
+                    when { not { buildingTag() } }
+                    steps { 
+                        sh 'env'
+                        sh 'echo Hello!'
+                    }
+                }
+                stage('Tag Build') {
+                    when { buildingTag() }
+                    steps {
+                        sh '''
+                            env
+                            cd strapi
+                            docker images
+                            docker build --no-cache -t hkappdlv006.asia.pwcinternal.com:443/digital-store/internal-strapi:${BRANCH_NAME} .
+                            cd ../gatsby
+                            docker build -t hkappdlv006.asia.pwcinternal.com:443/digital-store/internal-gatsby:${BRANCH_NAME} .
+                        '''
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+              sh 'echo Hello'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+              script {
+                  withCredentials([usernamePassword(credentialsId: 'sshUser', passwordVariable: 'sshPass', usernameVariable: 'userName')]){
+                    def remote = [:]
+                    remote.name = 'server1'
+                    remote.host = '192.168.50.101'
+                    remote.user = env.userName
+                    remote.password = env.sshPass
+                    remote.allowAnyHosts = true
+                    writeFile file: 'abc.sh', text: 'id'
+                    sshScript remote: remote, script: 'abc.sh'
+                    sshCommand remote: remote, command: "ls -lrt"
+                  } 
+              }  
+              sh 'echo Hello'
+            }
+        }
+    }
+}
