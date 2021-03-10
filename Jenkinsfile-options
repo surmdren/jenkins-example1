@@ -1,10 +1,10 @@
 pipeline {
     agent any
     options {
-                timeout(time: 1, unit: 'HOURS') 
-                buildDiscarder(logRotator(numToKeepStr: '1'))
-            }
+        buildDiscarder(logRotator(numToKeepStr: '1', artifactNumToKeepStr: '30'))
+    }
     stages {
+        stage('Example') {
             steps {
                 echo 'Hello World'
             }
