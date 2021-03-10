@@ -3,7 +3,6 @@ pipeline {
     stages {
         stage('Example') {
             options {
-                timeout(time: 1, unit: 'HOURS') 
                 buildDiscarder(logRotator(numToKeepStr: '1'))
             }
             steps {
