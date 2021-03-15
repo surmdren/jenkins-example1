@@ -11,14 +11,12 @@ pipeline {
     stages{
         stage('Image pull'){
             steps{
-                container(env.build_image){
-                    script {
-                        sh '''
-                        git clone http://${gitlabaccount}:${gitlabtoken}@http://3485w882x5.oicp.vip/surmdren/nginx-lab.git
-                        cd nginx-lab
-                        git checkout ${IMAGETAG}
-                        '''
-                    }
+                script {
+                    sh '''
+                    git clone http://${gitlabaccount}:${gitlabtoken}@http://3485w882x5.oicp.vip/surmdren/nginx-lab.git
+                    cd nginx-lab
+                    git checkout ${IMAGETAG}
+                    '''
                 }
             }
         }
