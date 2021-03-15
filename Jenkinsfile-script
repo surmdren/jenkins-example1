@@ -1,8 +1,5 @@
 pipeline{
     agent any
-    options {timeout(time: 50, unit: 'MINUTES')
-        parallelsAlwaysFailFast()
-    }
     environment {
         gitlabaccount = credentials('gitlabaccount')
         gitlabtoken = credentials('gitlabtoken')
