@@ -8,7 +8,7 @@ pipeline {
         string(name: 'QAIMAGE', defaultValue: 'nginx', description: 'AWM QA image name')
         string(name: 'IMAGETAG', defaultValue: 'nginx-dev', description: 'AWM QA image tag')
     }
-    stages{
+    stages {
         stage('Image pull'){
             steps{
                 script {
