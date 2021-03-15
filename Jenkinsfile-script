@@ -13,7 +13,7 @@ pipeline {
             steps{
                 script {
                     sh '''
-                    git clone http://${gitlabaccount}:${gitlabtoken}@http://3485w882x5.oicp.vip/surmdren/nginx-lab.git
+                    git clone http://${gitlabaccount}:${gitlabtoken}@3485w882x5.oicp.vip/surmdren/nginx-lab.git
                     cd nginx-lab
                     git checkout ${IMAGETAG}
                     '''
