@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        stage('Example') {
+            steps {
+                script {
+                    sh "echo ${env.CHANGE_ID}"
+                    sh "echo this is develop branch!"
+                }
+            }
+        }
+    }
+}
