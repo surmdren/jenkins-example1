@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage('choiceParameters') {
+            steps {
+              script{
+                newChoice  = [$class: 'ChoiceParameterDefinition', name: id, choices: 1, description: "Test"];
+              }
+            }
+        }
+    }
+}
