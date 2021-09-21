@@ -5,6 +5,9 @@ pipeline {
             steps {
               script{
                 newChoice  = [$class: 'ChoiceParameterDefinition', choices: ['','ADD','SHOW','DELETE','UPDATE','RESET'], description: 'Choose something', name: ''];
+                def varTochoice;
+                varTochoice = input id: 'choices',message: 'choices',ok:'OK', parameters: newChoice;
+                echo $varTochoice;
               }
             }
         }
