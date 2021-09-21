@@ -5,7 +5,6 @@ pipeline {
             steps {
               script{
                 newChoice  = [$class: 'ChoiceParameterDefinition', choices: ['','ADD','SHOW','DELETE','UPDATE','RESET'], description: 'Choose something', name: ''];
-
               }
             }
         }
