@@ -7,12 +7,12 @@ pipeline {
                 def choiceParam = [];
                 for (int i in 1..3){
                   def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET'];
-                  def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
+                  // def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
                   println(i);
-                  println "Property: $selectedProperty";
-                  println(selectedProperty);
-                  choiceParam += selectedProperty;
-                  println(choiceParam);
+                  // println "Property: $selectedProperty";
+                  // println(selectedProperty);
+                  // choiceParam += selectedProperty;
+                  // println(choiceParam);
                 }
               }
             }
