@@ -5,9 +5,10 @@ pipeline {
             steps {
               script{
                 def choiceParam = [];
-                for (i in 1..3){
+                for (int i in 1..3){
                   def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET','$i'];
                   def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
+                  println("i: "i);
                   println "Property: $selectedProperty"
                   println(selectedProperty)
                   choiceParam += selectedProperty
