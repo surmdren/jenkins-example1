@@ -4,10 +4,9 @@ pipeline {
         stage('choiceParameters') {
             steps {
               script{
-                newChoice  = [$class: 'ChoiceParameterDefinition', choices: ['','ADD','SHOW','DELETE','UPDATE','RESET'], description: 'Choose something', name: ''];
-                def varTochoice;
-                varTochoice = input id: 'choices',message: 'choices',ok:'OK', parameters: newChoice;
-                echo $varTochoice;
+                def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET'];
+                def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
+                println "Property: $selectedProperty"
               }
             }
         }
