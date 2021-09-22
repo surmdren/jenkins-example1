@@ -11,7 +11,7 @@ pipeline {
                   println "Property: $selectedProperty";
                   println(selectedProperty);
                   choiceParam += selectedProperty;
-                  println(choiceParam[prop]);
+                  println(choiceParam['prop']);
               }
             }
         }
