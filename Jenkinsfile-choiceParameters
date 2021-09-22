@@ -5,18 +5,18 @@ pipeline {
             steps {
               script{
                 def choiceParam = [];
-                def varList = [a,b]
-                for ( i in varList){
-                  def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET', i];
+                def varList = [a,b];
+                // for ( i in varList){
+                  def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET'];
                   println(inputParams);
                   def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
-                  println(i);
+                  // println(i);
                   println "Property: $selectedProperty";
                   println(selectedProperty);
                   choiceParam += selectedProperty;
                   println(choiceParam);
                 }
-              }
+              // }
             }
         }
     }
