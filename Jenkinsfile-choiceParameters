@@ -5,7 +5,7 @@ pipeline {
             steps {
               script{
                 def choiceParam = [];
-                def varList = [a,b];
+                // def varList = [a,b];
                 // for ( i in varList){
                   def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET'];
                   println(inputParams);
