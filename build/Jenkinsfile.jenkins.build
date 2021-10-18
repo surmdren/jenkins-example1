@@ -1,9 +1,7 @@
 def docker_repo = "jenkins"
 
 pipeline {
-    agent {
-        any
-    }
+    agent any
     options {
         ansiColor colorMapName: 'XTerm'
     }
