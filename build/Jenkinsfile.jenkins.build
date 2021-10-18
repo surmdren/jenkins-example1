@@ -6,15 +6,6 @@ pipeline {
         ansiColor colorMapName: 'XTerm'
     }
     stages {
-        stage("checkout"){
-            steps {
-                script {
-                    commit_id = checkout(scm).GIT_COMMIT
-                    sh "echo ${commit_id} > COMMIT_ID"
-                    }
-                }
-            }
-        }
         stage("build"){
             steps {
                 script {
