@@ -1,0 +1,36 @@
+// pipeline {
+//     agent any
+//     stages {
+//         stage('choiceParameters') {
+//             steps {
+//               script{
+//                 def choiceParam = [];
+//                 def inputParams = ['','ADD','SHOW','DELETE','UPDATE','RESET'];
+//                 println(inputParams);
+//                 def selectedProperty = input( id: 'userInput', message: 'Choose properties file', parameters: [ [$class: 'ChoiceParameterDefinition', choices: inputParams, description: 'Properties', name: 'prop'] ])
+//                 println "Property: $selectedProperty";
+//                 println(selectedProperty);
+//               }
+//             }
+//         }
+//     }
+// }
+
+ pipeline {
+    agent any
+
+    stages {
+
+        stage("Interactive_Input") {
+            steps {
+                script {
+                def choiceParam = [[$class: 'ChoiceParameterDefinition', choices: ['no','yes'].join('\n'), description: 'Path of config file', name: 'Config'],
+                                    [$class: 'ChoiceParameterDefinition', choices: ['no','yes'].join('\n'), description: 'Test Info file', name: 'Test']];
+                def userInput = input id: 'userInput', message: 'Enter path of test reports:?', parameters: choiceParam;
+                echo ("IQA Sheet Path: "+userInput['Config'])
+                echo ("Test Info file path: "+userInput['Test'])
+                }
+            }
+        }
+    }
+}

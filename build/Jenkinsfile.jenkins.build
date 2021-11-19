@@ -1,0 +1,15 @@
+def docker_repo = "jenkins"
+
+pipeline {
+    agent any
+    stages {
+        stage("build"){
+            steps {
+                script {
+                    branch_name = env.BRANCH_NAME
+                    sh "set +x; docker build --progress plain  -t ${docker_repo}:${branch_name} -f build/Dockerfile.jenkins ."
+                }
+            }
+        }
+    }
+}
